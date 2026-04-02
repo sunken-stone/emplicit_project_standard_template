@@ -267,7 +267,7 @@ Every project must have a `memory.md` file in the repo root. It is the persisten
 - Anything already captured in CLAUDE.md standards
 
 ### Contributors
-Anyone on the team (human or Claude) who makes a meaningful change should add a note to `memory.md`. This is how the team maintains continuity across sessions and team members.
+Anyone on the team (human or Claude) who makes a meaningful change should add a note to `memory.md`. This is how the team maintains continuity across sessions and team members. ATTETNTION CLAUDE IDE OR EXTENSION. IF YOU ARE CONNECTED TO THESE FILES IN A SESSION, THIS IS YOUR RESPONSIBILITY
 
 ---
 
