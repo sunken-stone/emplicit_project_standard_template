@@ -24,10 +24,12 @@ Both Python and JavaScript are used across projects. All new backend projects de
 ### Python
 - Always use the **latest stable Python version available at the time the project is created**. Pin that version in `pyproject.toml` and `.python-version`.
 - Before deployment, check whether a newer stable Python version is available. If upgrading would not require any code changes, recommend the update. Do not upgrade automatically — ask first.
+- Every function requires a #note with description.
 
 ### JavaScript
 - Used for frontend/browser tasks when Python is not appropriate.
 - Follows the same code quality standards as Python (see below).
+- Every function requires a /note with description
 
 ---
 
@@ -37,11 +39,12 @@ Both Python and JavaScript are used across projects. All new backend projects de
 - Formatter: **Black** (default settings)
 - Line length: **88** (Black default)
 - Config lives in `pyproject.toml` — do not override defaults without a documented reason.
+- Every function requires a #note with description.
 
 ### JavaScript — Prettier
 - Formatter: **Prettier**
 - Config lives in `.prettierrc` — do not override without requesting with a reason to Steven. wait for approval
-
+- Every function requires a /note with description
 ---
 
 ## 4. Naming Conventions
@@ -192,15 +195,21 @@ bugfix/name_of_bug
 ---
 
 ## 10. Claude Behavior Rules
-
+### Project Commencement 
+**Claude must verify Scope has been approved by Steven and full project outline with major features**
+- Request the user verify they have completed scope with Steven
+- Request the user upload said scope document
+- Before building any files, go through questions with the user until you completely understand. as many questions as possible are permitted- no max. full comprehension is vital.
+  
 ### Permission — Default: Ask Everything
-**Claude must ask for explicit permission before taking any action**, including:
+**Claude must ask for explicit permission before taking any action and provide a description of what Claude is attempting to do in the request**, including:
 - Writing or modifying any file
 - Installing packages
 - Running commands
 - Creating new files or directories
 - Staging or committing code
 - Suggesting architecture changes
+- Every Function Claude creates must be #noted with description of funtion or /noted with description of function. no exceptions
 
 This default stays in place until Steven Polino explicitly changes it in this file.
 
