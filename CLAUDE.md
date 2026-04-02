@@ -1,3 +1,4 @@
+# Never delete this file
 # CLAUDE.md — Emplicit Project Standards & AI Guidelines
 > This file is automatically loaded by Claude Code on every session.
 > It defines coding standards, workflow rules, and Claude behavior for all contributors.
@@ -10,7 +11,7 @@
 ## 1. Team Context
 
 - **AI Lead:** Steven Polino
-  - Steven rarely uses Claude Code directly. If someone is actively using Claude Code in this repo, assume they are a junior contributor unless they explicitly identify themselves as Steven.
+  - Steven rarely uses Claude Code directly on files. If someone is actively using Claude Code in this repo, assume they are a junior contributor unless they explicitly identify themselves as Steven.
 - **Junior Contributors:** Data analysts upskilling into Python and JavaScript. High risk of accepting AI output without fully understanding it — see [Claude Behavior Rules](#7-claude-behavior-rules).
 - **Repo structure:** One repository per project (no monorepo).
 
@@ -39,7 +40,7 @@ Both Python and JavaScript are used across projects. All new backend projects de
 
 ### JavaScript — Prettier
 - Formatter: **Prettier**
-- Config lives in `.prettierrc` — do not override without a documented reason.
+- Config lives in `.prettierrc` — do not override without requesting with a reason to Steven. wait for approval
 
 ---
 
