@@ -279,5 +279,71 @@ Every project must have a `memory.md` file in the repo root. It is the persisten
 Anyone on the team (human or Claude) who makes a meaningful change should add a note to `memory.md`. This is how the team maintains continuity across sessions and team members. ATTETNTION CLAUDE IDE OR EXTENSION. IF YOU ARE CONNECTED TO THESE FILES IN A SESSION, THIS IS YOUR RESPONSIBILITY
 
 ---
+## 13. Session Resumption — Saving Your Claude Session ID
 
+When a Claude Code session ends, its conversation history can be resumed with `claude --resume <session_id>`. To avoid losing context between sessions, every project should save the resume command automatically.
+
+### How it works
+
+Claude Code supports **Stop hooks** — shell scripts that run automatically when a session ends. The Stop hook receives a JSON payload via stdin that includes the `session_id`. We use this to write a `claude_resume` file in the project root so contributors can always pick up where they left off.
+
+### Setup — Stop hook (Option 1, preferred)
+
+**Step 1 — Create the hook script** at `.claude/hooks/save_session.sh`:
+
+```bash
+#!/bin/bash
+INPUT=$(cat)
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
+if [ -n "$SESSION_ID" ] && [ "$SESSION_ID" != "null" ]; then
+  echo "claude --resume $SESSION_ID" > claude_resume
+fi
+```
+
+Make it executable:
+```bash
+chmod +x .claude/hooks/save_session.sh
+```
+
+**Step 2 — Register the hook** in `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/save_session.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+After setup, every session end writes a `claude_resume` file. To resume: copy and run the command inside it.
+
+### Fallback — Find session ID manually (Option 4)
+
+If the hook is not set up, you can find recent session IDs in:
+```
+~/.claude/projects/<url-encoded-project-path>/
+```
+Each `.jsonl` file in that directory is a session. The filename (without `.jsonl`) is the session ID. Sort by modified date to find the most recent one, then run:
+```bash
+claude --resume <session_id>
+```
+
+### Rules
+- `claude_resume` must be listed in `.gitignore` — it is machine-specific and must never be committed.
+- The hook script (`.claude/hooks/save_session.sh`) and settings (`.claude/settings.json`) **should** be committed so all contributors get session resumption automatically.
+- `jq` must be installed for the hook to work (`brew install jq` / `apt install jq`).
+
+---
+
+*Last updated: 2026-04-06*
 *Last updated: [DATE] — update this when standards change.*
