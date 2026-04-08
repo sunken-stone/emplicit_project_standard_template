@@ -1,4 +1,7 @@
 # Never delete this file
+
+# Always read PROJECT_SCOPE.md at session start for project-specific context before taking any action.
+
 # CLAUDE.md — Emplicit Project Standards & AI Guidelines
 > This file is automatically loaded by Claude Code on every session.
 > It defines coding standards, workflow rules, and Claude behavior for all contributors.
